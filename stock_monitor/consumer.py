@@ -13,7 +13,7 @@ consumer = KafkaConsumer(
     value_deserializer=lambda m: json.loads(m.decode("utf-8")),
 )
 
-consumer.subscribe("stock-updates")
+consumer.subscribe("finnhub-trades")
 
 try:
     for message in consumer:
