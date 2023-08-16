@@ -5,12 +5,12 @@ from kafka import KafkaConsumer
 result = {}
 
 consumer = KafkaConsumer(
-    bootstrap_servers=["localhost:19092"],
+    bootstrap_servers=["localhost:9092"], 
     group_id="demo-group",
     auto_offset_reset="earliest",
     enable_auto_commit=False,
     consumer_timeout_ms=1000,
-    value_deserializer=lambda m: json.loads(m.decode("ascii")),
+    value_deserializer=lambda m: json.loads(m.decode("utf-8")),
 )
 
 consumer.subscribe("stock-updates")
@@ -24,9 +24,7 @@ try:
         )
         result[data["symbol"]]["weighted_price"] += data["price"] * data["volume"]
         result[data["symbol"]]["total_volume"] += data["volume"]
-        result[data["symbol"]]["min_offset"] = min(
-            [result[data["symbol"]]["min_offset"], message.offset]
-        )
+        result[data["symbol"]]["min_offset"] = min([result[data["symbol"]]["min_offset"], message.offset])
 
 except Exception as e:
     print(f"Error occurred while consuming messages: {e}")

@@ -7,8 +7,8 @@ from kafka import KafkaProducer
 from kafka.errors import KafkaError
 
 producer = KafkaProducer(
-    bootstrap_servers="localhost:19092",
-    value_serializer=lambda m: json.dumps(m).encode("ascii"),
+    bootstrap_servers="localhost:9092", 
+    value_serializer=lambda m: json.dumps(m).encode("utf-8"),
 )
 
 topic = "stock-updates"
