@@ -63,7 +63,7 @@ def on_ws_open(ws):
 if __name__ == "__main__":
     websocket.enableTrace(True)
     ws = websocket.WebSocketApp(
-        "wss://ws.finnhub.io?token=<api-key>",
+        "wss://ws.finnhub.io?token=cj5eb61r01qpipiaaps0cj5eb61r01qpipiaapsg", #Set your APIKEY here. Create it in https://finnhub.io/
         on_message=on_ws_message,
         on_error=on_ws_error,
         on_close=on_ws_close,
